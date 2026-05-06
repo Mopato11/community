@@ -20,50 +20,45 @@
             overflow-x: hidden;
         }
 
-        /* حاوية الخلفية المتحركة */
-        .background-container {
+        /* حاوية الخلفية المتحركة بالرابط الجديد */
+        .bg-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
         }
 
-        /* خلفية بديلة (صورة طقوس غامضة في حال فشل الفيديو) */
-        .background-container::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDE2dHpiYWFycDRvY2x3dnEwMDg0a25xYjZscHozZnNka3pzeWgwNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7NkyOb0hraA6Y/giphy.gif');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.2) contrast(1.5);
+        .bg-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* لضمان ملء الشاشة */
+            filter: brightness(0.3); /* تعتيم الصورة لتسهيل القراءة */
         }
 
         .overlay {
             position: relative;
             z-index: 1;
-            min-height: 100vh;
-            background: rgba(0, 0, 0, 0.6); /* تعتيم إضافي لبروز المحتوى */
             padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.4); /* طبقة تعتيم إضافية */
+            min-height: 100vh;
         }
 
         .main-logo {
-            width: 160px;
+            width: 150px;
             border-radius: 50%;
             border: 3px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent);
-            animation: pulse 3s infinite;
+            box-shadow: 0 0 20px var(--accent);
+            animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        h1 { font-size: 3rem; text-align: center; text-shadow: 0 0 20px var(--accent); }
+        h1 { font-size: 3rem; text-align: center; text-shadow: 0 0 15px var(--accent); }
 
         .dapps-grid {
             display: grid;
@@ -74,43 +69,37 @@
         }
 
         .dapp-card {
-            background: rgba(15, 15, 15, 0.9);
+            background: rgba(20, 20, 20, 0.85);
             border: 1px solid #333;
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(5px);
             text-align: right;
-        }
-
-        .dapp-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
         }
 
         .dapp-image {
             width: 100%;
-            height: 160px;
-            border-radius: 12px;
+            height: 150px;
+            border-radius: 10px;
             object-fit: cover;
             margin-bottom: 15px;
         }
 
-        .dapp-name { font-size: 1.5rem; color: var(--accent); font-weight: bold; }
+        .dapp-name { font-size: 1.4rem; color: var(--accent); font-weight: bold; }
         
-        /* خانة By (من أنشأ التطبيق) */
-        .created-by { font-size: 0.85rem; color: #00ffaa; margin-bottom: 10px; display: block; opacity: 0.8; }
+        /* خانة By */
+        .creator { font-size: 0.85rem; color: #888; display: block; margin-bottom: 10px; }
         
         /* خانة الوصف */
-        .dapp-description { font-size: 0.9rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
+        .desc { font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 20px; }
 
-        .visit-btn {
+        .btn {
             display: block;
             background: var(--accent);
             color: #000;
             text-align: center;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
         }
@@ -118,38 +107,36 @@
 </head>
 <body>
 
-    <div class="background-container"></div>
+    <div class="bg-container">
+        <!-- الرابط الذي أرسلته تم وضعه هنا كخلفية -->
+        <img src="https://media.giphy.com/media/7NkyOb0hraA6Y/giphy.gif" class="bg-gif" alt="Ritual Rituals">
+    </div>
 
     <div class="overlay">
         <div style="text-align: center;">
-            <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" alt="Ritual Logo" class="main-logo">
+            <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
             <h1>Ritual Testnet</h1>
         </div>
 
-        <div class="container">
-            <div class="dapps-grid">
-                
-                <!-- تطبيق 1 -->
-                <div class="dapp-card">
-                    <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
-                    <span class="dapp-name">Tanjoro Node</span>
-                    <span class="created-by">By: Ritual Community</span>
-                    <p class="dapp-description">هذا التطبيق هو بوابتك لتشغيل عقدة Infernet والمشاركة في بناء مستقبل الذكاء الاصطناعي اللامركزي.</p>
-                    <a href="https://x.com/ritualnet" class="visit-btn">Visit Here</a>
-                </div>
-
-                <!-- تطبيق 2 -->
-                <div class="dapp-card">
-                    <img src="https://via.placeholder.com/300x160/111/00ffaa?text=Anthor+Project" class="dapp-image">
-                    <span class="dapp-name">Anthor App</span>
-                    <span class="created-by">By: meison</span>
-                    <p class="dapp-description">وصف التطبيق الثاني وكيفية عمله ضمن نظام ريتوال.</p>
-                    <a href="#" class="visit-btn">Visit Here</a>
-                </div>
-
-                <!-- كرر هذه البطاقة للوصول لـ 10 تطبيقات -->
-
+        <div class="dapps-grid">
+            <div class="dapp-card">
+                <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
+                <span class="dapp-name">Tanjoro Node</span>
+                <span class="creator">By: Ritual Community</span>
+                <p class="desc">هذا التطبيق يساعدك على إدارة عقدك في شبكة Ritual بسهولة.</p>
+                <a href="#" class="btn">Visit Here</a>
             </div>
+
+            <!-- خانة لتطبيق anthor -->
+            <div class="dapp-card">
+                <img src="" class="dapp-image" style="background:#1a1a1a">
+                <span class="dapp-name">Anthor dApp</span>
+                <span class="creator">By: Developer Name</span>
+                <p class="desc">وصف التطبيق الثاني وكيفية استخدامه.</p>
+                <a href="#" class="btn">Visit Here</a>
+            </div>
+            
+            <!-- يمكنك تكرار البطاقة حتى 10 مرات لـ evrey تطبيق جديد[cite: 1] -->
         </div>
     </div>
 
