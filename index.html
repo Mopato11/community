@@ -5,146 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ritual Testnet Directory</title>
     <style>
-        :root {
-            --accent: #00ffaa;
-            --bg: #050505;
-        }
-
-        body, html {
+        /* خلفية ألوان متحركة مضمونة 100% */
+        body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg);
+            background: linear-gradient(-45deg, #000000, #0a221a, #00ffaa, #050505);
+            background-size: 400% 400%;
+            animation: ritualGradient 10s ease infinite;
             color: white;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            font-family: sans-serif;
+            min-height: 100vh;
         }
 
-        /* خلفية برمجية متحركة (تأثير الضباب المتوهج) */
-        .ritual-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0a221a 0%, #000 100%);
-            overflow: hidden;
+        @keyframes ritualGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .ritual-bg::after {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: transparent url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            opacity: 0.1;
-        }
-
-        /* دوائر متوهجة متحركة تشبه الطقوس */
-        .glow-circle {
-            position: absolute;
-            background: var(--accent);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            animation: move 15s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(0, 0); }
-            to { transform: translate(100px, 100px); }
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-            padding: 60px 20px;
+        .main-container {
             text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.4); /* طبقة تعتيم خفيفة */
+            min-height: 100vh;
         }
 
         .main-logo {
             width: 150px;
             border-radius: 50%;
-            border: 3px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent);
-            animation: float 4s infinite ease-in-out;
+            border: 3px solid #00ffaa;
+            box-shadow: 0 0 20px #00ffaa;
+            margin-bottom: 20px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+        h1 { font-size: 2.5rem; text-shadow: 0 0 10px #00ffaa; }
 
-        h1 { font-size: 3rem; text-shadow: 0 0 20px var(--accent); margin: 25px 0; }
-
-        .dapps-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 40px auto;
         }
 
-        .dapp-card {
-            background: rgba(15, 15, 15, 0.9);
+        .card {
+            background: rgba(20, 20, 20, 0.9);
             border: 1px solid #333;
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
             text-align: right;
-            transition: 0.3s;
         }
 
-        .dapp-card:hover { border-color: var(--accent); transform: scale(1.05); }
-
-        .dapp-image {
-            width: 100%; height: 160px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 15px;
+        .dapp-img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
             background: #111;
+            object-fit: cover;
         }
 
-        .dapp-name { font-size: 1.5rem; color: var(--accent); font-weight: bold; }
-        .by-tag { font-size: 0.85rem; color: #888; display: block; margin-bottom: 10px; }
-        .description { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
+        .dapp-name { color: #00ffaa; font-size: 1.4rem; font-weight: bold; display: block; margin-top: 10px; }
+        .by-text { color: #888; font-size: 0.8rem; display: block; margin-bottom: 10px; }
+        .desc-text { color: #ccc; font-size: 0.9rem; line-height: 1.4; margin-bottom: 20px; }
 
         .btn {
             display: block;
-            background: var(--accent);
-            color: #000;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
+            background: #00ffaa;
+            color: black;
             text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
             font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="ritual-bg">
-        <div class="glow-circle" style="width: 400px; height: 400px; top: 10%; left: 10%;"></div>
-        <div class="glow-circle" style="width: 300px; height: 300px; bottom: 10%; right: 10%; animation-delay: -5s;"></div>
-    </div>
-
-    <div class="content">
+    <div class="main-container">
         <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
         <h1>Ritual Testnet Directory</h1>
 
-        <div class="dapps-grid">
-            <div class="dapp-card">
-                <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
+        <div class="grid">
+            <!-- التطبيق 1 -->
+            <div class="card">
+                <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-img">
                 <span class="dapp-name">Tanjoro Node</span>
-                <span class="by-tag">By: Ritual Community</span>
-                <p class="description">وصف دقيق للمشروع وكيفية المساهمة فيه ضمن شبكة Ritual.</p>
-                <a href="#" class="btn">Visit Project</a>
+                <span class="by-text">By: Ritual Community</span>
+                <p class="desc-text">وصف المشروع وكيفية استخدامه في شبكة التجربة.</p>
+                <a href="#" class="btn">Visit Here</a>
             </div>
 
-            <div class="dapp-card">
-                <img src="" class="dapp-image">
+            <!-- تطبيق Anthor -->
+            <div class="card">
+                <img src="" class="dapp-img">
                 <span class="dapp-name">Anthor App</span>
-                <span class="by-tag">By: Developer Name</span>
-                <p class="description">هذا التطبيق هو **anthor** مشروع يدعم التوسع في الذكاء الاصطناعي.</p>
-                <a href="#" class="btn">Visit Project</a>
+                <span class="by-text">By: Developer Name[cite: 1]</span>
+                <p class="desc-text">هذا تطبيق **anthor** مخصص لمجتمع ريتوال[cite: 1].</p>
+                <a href="#" class="btn">Visit Here</a>
             </div>
         </div>
     </div>
