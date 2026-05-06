@@ -7,27 +7,53 @@
     <style>
         :root {
             --accent: #00ffaa;
-            --bg-dark: #050505;
+            --bg: #050505;
         }
 
         body, html {
-            margin: 0; padding: 0;
-            background-color: var(--bg-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
             color: white;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
 
-        /* خلفية برمجية متحركة تشبه الطقوس التقنية */
-        #canvas-container {
+        /* خلفية برمجية متحركة (تأثير الضباب المتوهج) */
+        .ritual-bg {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            background: radial-gradient(circle at 50% 50%, #0a221a 0%, #000 100%);
+            overflow: hidden;
         }
 
-        .overlay {
+        .ritual-bg::after {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: transparent url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.1;
+        }
+
+        /* دوائر متوهجة متحركة تشبه الطقوس */
+        .glow-circle {
+            position: absolute;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: move 15s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(0, 0); }
+            to { transform: translate(100px, 100px); }
+        }
+
+        .content {
             position: relative;
             z-index: 1;
             padding: 60px 20px;
@@ -39,22 +65,22 @@
             border-radius: 50%;
             border: 3px solid var(--accent);
             box-shadow: 0 0 30px var(--accent);
-            animation: ritual-float 4s infinite ease-in-out;
+            animation: float 4s infinite ease-in-out;
         }
 
-        @keyframes ritual-float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        h1 { font-size: 3rem; text-shadow: 0 0 20px var(--accent); margin: 20px 0; }
+        h1 { font-size: 3rem; text-shadow: 0 0 20px var(--accent); margin: 25px 0; }
 
         .dapps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 0 auto;
         }
 
         .dapp-card {
@@ -62,9 +88,9 @@
             border: 1px solid #333;
             border-radius: 20px;
             padding: 25px;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             text-align: right;
-            transition: 0.4s;
+            transition: 0.3s;
         }
 
         .dapp-card:hover { border-color: var(--accent); transform: scale(1.05); }
@@ -74,18 +100,14 @@
             border-radius: 12px;
             object-fit: cover;
             margin-bottom: 15px;
-            background: #222;
+            background: #111;
         }
 
         .dapp-name { font-size: 1.5rem; color: var(--accent); font-weight: bold; }
-        
-        /* خانة By */
-        .creator-tag { font-size: 0.85rem; color: #888; display: block; margin-bottom: 10px; }
-        
-        /* خانة Description */
-        .description-text { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
+        .by-tag { font-size: 0.85rem; color: #888; display: block; margin-bottom: 10px; }
+        .description { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
 
-        .btn-link {
+        .btn {
             display: block;
             background: var(--accent);
             color: #000;
@@ -99,95 +121,33 @@
 </head>
 <body>
 
-    <!-- حاوية الخلفية المتحركة -->
-    <canvas id="canvas-container"></canvas>
+    <div class="ritual-bg">
+        <div class="glow-circle" style="width: 400px; height: 400px; top: 10%; left: 10%;"></div>
+        <div class="glow-circle" style="width: 300px; height: 300px; bottom: 10%; right: 10%; animation-delay: -5s;"></div>
+    </div>
 
-    <div class="overlay">
-        <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" alt="Ritual Logo" class="main-logo">
+    <div class="content">
+        <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
         <h1>Ritual Testnet Directory</h1>
 
         <div class="dapps-grid">
-            <!-- التطبيق 1 -->
             <div class="dapp-card">
                 <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
                 <span class="dapp-name">Tanjoro Node</span>
-                <span class="creator-tag">By: Ritual Community</span>
-                <p class="description-text">وصف دقيق للمشروع وكيفية المساهمة فيه ضمن شبكة Ritual.</p>
-                <a href="#" class="btn-link">Visit Project</a>
+                <span class="by-tag">By: Ritual Community</span>
+                <p class="description">وصف دقيق للمشروع وكيفية المساهمة فيه ضمن شبكة Ritual.</p>
+                <a href="#" class="btn">Visit Project</a>
             </div>
 
-            <!-- تطبيق Anthor كمثال -->
             <div class="dapp-card">
                 <img src="" class="dapp-image">
                 <span class="dapp-name">Anthor App</span>
-                <span class="creator-tag">By: Developer Name</span>
-                <p class="description-text">هذا التطبيق هو **anthor** مشروع يدعم التوسع في الذكاء الاصطناعي[cite: 1].</p>
-                <a href="#" class="btn-link">Visit Project</a>
+                <span class="by-tag">By: Developer Name</span>
+                <p class="description">هذا التطبيق هو **anthor** مشروع يدعم التوسع في الذكاء الاصطناعي.</p>
+                <a href="#" class="btn">Visit Project</a>
             </div>
-            
-            <!-- كرر لـ 10 تطبيقات[cite: 1] -->
         </div>
     </div>
 
-    <!-- كود برمجي لصناعة حركة الطقوس في الخلفية -->
-    <script>
-        const canvas = document.getElementById('canvas-container');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = '#00ffaa';
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.005;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#00ffaa';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].size <= 0.2) {
-                    particles.splice(i, 1);
-                    i--;
-                    particles.push(new Particle());
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-        init();
-        animate();
-    </script>
 </body>
 </html>
