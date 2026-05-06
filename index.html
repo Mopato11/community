@@ -3,169 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritual Mystical Directory</title>
+    <title>Ritual Testnet Directory</title>
     <style>
         :root {
-            --candle-green: #00ffaa;
+            --ritual-green: #00ffaa;
             --fire-glow: rgba(0, 255, 170, 0.2);
         }
 
         body {
-            margin: 0; padding: 0;
+            margin: 0;
             background: #000;
             color: white;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
         }
 
-        /* خلفية الضباب والطقوس */
-        .mystic-overlay {
+        /* خلفية الشموع والنار البرمجية */
+        .ritual-altar {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at bottom, #0a221a 0%, #000 80%);
+            background: radial-gradient(circle at bottom, #051a14 0%, #000 80%);
             z-index: -1;
         }
 
-        .container {
+        /* برمجة الشمعة الخضراء */
+        .candle {
+            position: absolute;
+            bottom: 50px;
+            width: 30px;
+            height: 120px;
+            background: linear-gradient(to top, #004422, #00ffaa);
+            border-radius: 5px;
+            box-shadow: 0 0 20px var(--fire-glow);
+        }
+
+        .flame {
+            position: absolute;
+            top: -25px; left: 50%;
+            transform: translateX(-50%);
+            width: 15px; height: 25px;
+            background: #fff;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 20px #00ffaa, 0 0 40px #00ffaa;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+            100% { transform: translateX(-52%) scale(1.1); opacity: 1; }
+        }
+
+        /* حاوية المحتوى */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 40px;
             text-align: center;
-            padding: 60px 20px;
         }
 
-        /* شعار ريتوال بتأثير الهالة المشتعلة */
         .main-logo {
-            width: 140px;
+            width: 120px;
             border-radius: 50%;
-            border: 2px solid var(--candle-green);
-            box-shadow: 0 0 50px var(--candle-green), inset 0 0 20px var(--candle-green);
-            animation: flame-pulse 2s infinite alternate;
+            filter: drop-shadow(0 0 15px var(--ritual-green));
+            animation: pulse 2s infinite;
         }
 
-        @keyframes flame-pulse {
-            from { transform: scale(1); filter: brightness(1); }
-            to { transform: scale(1.05); filter: brightness(1.5) drop-shadow(0 0 20px var(--candle-green)); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        /* تصميم خانة التطبيق كأنها شمعة أو محراب */
+        /* شبكة التطبيقات ومؤثرات الضغط */
         .dapps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 50px auto;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 40px auto;
         }
 
         .dapp-card {
-            background: rgba(10, 10, 10, 0.95);
-            border-bottom: 4px solid #111;
-            border-radius: 15px;
-            padding: 30px;
-            position: relative;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 20px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            position: relative;
             overflow: hidden;
         }
 
-        /* تأثير النار الخضراء خلف الخانة عند التفاعل */
-        .dapp-card::before {
-            content: "";
-            position: absolute;
-            top: 100%; left: 50%;
-            width: 120%; height: 100%;
-            background: radial-gradient(circle, var(--candle-green) 0%, transparent 70%);
-            transform: translateX(-50%);
-            transition: 0.5s;
-            opacity: 0;
-            filter: blur(40px);
-            z-index: -1;
+        /* مؤثرات عند محاولة الضغط (Hover) */
+        .dapp-card:hover {
+            border-color: var(--ritual-green);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.3);
         }
 
-        /* المؤثرات عند تمرير الماوس أو الضغط */
-        .dapp-card:hover, .dapp-card:active {
-            transform: translateY(-15px) scale(1.02);
-            border-bottom-color: var(--candle-green);
-            box-shadow: 0 10px 40px rgba(0, 255, 170, 0.3);
+        /* توهج داخلي عند التحويم */
+        .dapp-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 170, 0.1), transparent);
+            transition: 0.5s;
         }
 
         .dapp-card:hover::before {
-            top: 40%;
-            opacity: 0.4;
+            left: 100%;
         }
 
-        /* أيقونة التطبيق */
         .dapp-image {
-            width: 100%;
-            height: 180px;
-            border-radius: 10px;
+            width: 100%; height: 150px;
+            border-radius: 12px;
             object-fit: cover;
-            border: 1px solid #222;
-            filter: grayscale(0.5);
-            transition: 0.3s;
+            background: #111;
         }
 
-        .dapp-card:hover .dapp-image {
-            filter: grayscale(0) brightness(1.2);
-            border-color: var(--candle-green);
-        }
+        .dapp-name { color: var(--ritual-green); font-size: 1.4rem; font-weight: bold; margin: 15px 0 5px; display: block; }
+        .by-text { color: #666; font-size: 0.85rem; display: block; }
+        .description { color: #bbb; font-size: 0.9rem; line-height: 1.5; margin: 15px 0; }
 
-        .dapp-name { 
-            color: var(--candle-green); 
-            font-size: 1.6rem; 
-            margin: 15px 0 5px; 
+        .btn-visit {
             display: block;
-            text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
-        }
-
-        .by-text { color: #888; font-size: 0.85rem; display: block; margin-bottom: 15px; }
-        
-        /* خانة الوصف */
-        .description { 
-            color: #bbb; 
-            font-size: 0.95rem; 
-            line-height: 1.6; 
-            height: 60px;
-            margin-bottom: 20px;
-        }
-
-        .btn-action {
-            display: block;
-            background: transparent;
-            color: var(--candle-green);
-            border: 1px solid var(--candle-green);
-            padding: 12px;
-            border-radius: 5px;
+            background: var(--ritual-green);
+            color: #000;
+            padding: 10px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
-            position: relative;
-            z-index: 2;
         }
 
-        .btn-action:hover {
-            background: var(--candle-green);
-            color: black;
-            box-shadow: 0 0 20px var(--candle-green);
+        .btn-visit:active {
+            transform: scale(0.9);
         }
     </style>
 </head>
 <body>
 
-    <div class="background-ritual"></div>
-
-    <!-- الشموع المتحركة -->
-    <div class="candles-container">
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle" style="height: 120px;"><div class="flame"></div></div>
-        <div class="candle"><div class="flame"></div></div>
-        <div class="candle" style="height: 80px;"><div class="flame"></div></div>
+    <div class="ritual-altar">
+        <!-- شموع موزعة في الخلفية -->
+        <div class="candle" style="left: 10%;"><div class="flame"></div></div>
+        <div class="candle" style="right: 10%; bottom: 80px;"><div class="flame"></div></div>
+        <div class="candle" style="left: 20%; bottom: 150px; transform: scale(0.7); opacity: 0.5;"><div class="flame"></div></div>
+        <div class="candle" style="right: 25%; bottom: 200px; transform: scale(0.5); opacity: 0.3;"><div class="flame"></div></div>
     </div>
 
-    <div class="mystic-overlay"></div>
-
-    <div class="container">
+    <div class="content">
         <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
-        <h1 style="font-size: 3rem; letter-spacing: 2px;">RITUAL SHRINE</h1>
-        <p style="color: #666;">Explore the decentralized rituals</p>
+        <h1>Ritual Testnet Directory</h1>
 
         <div class="dapps-grid">
             <!-- تطبيق 1 -->
@@ -173,20 +161,18 @@
                 <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
                 <span class="dapp-name">Tanjoro Node</span>
                 <span class="by-text">By: Ritual Community</span>
-                <p class="description">أداة متقدمة لتشغيل العقد في شبكة ريتوال مع واجهة طقوسية سهلة.</p>
-                <a href="#" class="btn-action">ACTIVATE</a>
+                <p class="description">وصف دقيق للمشروع وكيفية المساهمة فيه ضمن شبكة Ritual.</p>
+                <a href="#" class="btn-visit">Visit Project</a>
             </div>
 
             <!-- تطبيق Anthor -->
             <div class="dapp-card">
-                <img src="https://via.placeholder.com/400x250/050505/00ffaa?text=Anthor+App" class="dapp-image">
-                <span class="dapp-name">Anthor Project</span>
-                <span class="by-text">By: Mystic Dev</span>
-                <p class="description">هذا المشروع هو **anthor** خطوة في بناء مستقبل الذكاء الاصطناعي اللامركزي.</p>
-                <a href="#" class="btn-action">ACTIVATE</a>
+                <img src="" class="dapp-image">
+                <span class="dapp-name">Anthor App</span>
+                <span class="by-text">By: Developer Name</span>
+                <p class="description">هذا التطبيق هو **anthor** مشروع يدعم التوسع في الذكاء الاصطناعي[cite: 1].</p>
+                <a href="#" class="btn-visit">Visit Project</a>
             </div>
-            
-            <!-- كرر الخانات حتى 10[cite: 1] -->
         </div>
     </div>
 
