@@ -14,55 +14,48 @@
             margin: 0;
             background: #000;
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', Courier, monospace; /* خط يعطي طابع الطقوس */
             overflow-x: hidden;
         }
 
-        /* الخلفية والشموع (كما هي) */
+        /* الخلفية والشموع */
         .ritual-altar {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at bottom, #051a14 0%, #000 90%);
+            background: radial-gradient(circle at center, #051a14 0%, #000 90%);
             z-index: -1;
         }
 
         .candle {
             position: absolute;
-            bottom: 50px;
+            bottom: 30px;
             width: 35px;
-            height: 130px;
-            background: linear-gradient(to top, #004422, #00ffaa);
+            height: 140px;
+            background: linear-gradient(to top, #002211, #00ffaa);
             border-radius: 5px;
-            box-shadow: 0 0 25px var(--fire-glow);
+            box-shadow: 0 0 30px var(--fire-glow);
         }
 
         .flame {
             position: absolute;
-            top: -25px; left: 50%;
+            top: -30px; left: 50%;
             transform: translateX(-50%);
             width: 18px; height: 30px;
             background: #fff;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 20px #00ffaa, 0 0 50px #00ffaa;
-            animation: flicker 0.1s infinite alternate;
+            box-shadow: 0 0 25px var(--ritual-green), 0 0 50px var(--ritual-green);
+            animation: flicker 0.15s infinite alternate;
         }
 
         @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-            100% { transform: translateX(-52%) scale(1.15); opacity: 1; }
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: 1; }
         }
 
-        .content {
-            position: relative;
-            z-index: 10;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        /* --- تطوير الشعار: تكبير ودوران ثلاثي الأبعاد --- */
+        /* الشعار الضخم والمتحرك */
         .logo-container {
-            perspective: 1000px; /* لإعطاء عمق للدوران */
-            margin-bottom: 30px;
+            perspective: 1000px; /* لإعطاء تأثير ثلاثي الأبعاد */
+            margin-top: 50px;
         }
 
         .main-logo {
@@ -70,7 +63,7 @@
             border-radius: 50%;
             border: 4px solid var(--ritual-green);
             filter: drop-shadow(0 0 30px var(--ritual-green));
-            animation: rotate3D 6s linear infinite; /* دوران مستمر */
+            animation: rotate3D 8s linear infinite; /* دوران ثلاثي الأبعاد */
         }
 
         @keyframes rotate3D {
@@ -78,124 +71,123 @@
             to { transform: rotateY(360deg); }
         }
 
-        /* --- زخرفة الاسم --- */
+        /* زخرفة العنوان */
         .ritual-title {
             font-size: 3.5rem;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--ritual-green); /* إطار للاسم */
+            margin: 30px 0;
+            color: #fff;
             text-transform: uppercase;
             letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--ritual-green), 0 0 20px var(--ritual-green);
+            font-weight: 900;
             position: relative;
             display: inline-block;
-            margin-bottom: 50px;
-            animation: glowText 3s ease-in-out infinite alternate;
         }
 
-        @keyframes glowText {
-            from { 
-                text-shadow: 0 0 10px var(--ritual-green), 0 0 20px var(--ritual-green);
-                color: rgba(0, 255, 170, 0.1);
-            }
-            to { 
-                text-shadow: 0 0 30px var(--ritual-green), 0 0 60px var(--ritual-green);
-                color: var(--ritual-green);
-            }
-        }
-
-        /* زخرفة إضافية تحت الاسم */
-        .ritual-title::after {
-            content: '♦ ♦ ♦';
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1rem;
+        .ritual-title::before, .ritual-title::after {
+            content: " ✧ "; /* زخرفة جانبية */
             color: var(--ritual-green);
-            letter-spacing: 15px;
+            animation: pulseFade 2s infinite;
         }
 
-        /* شبكة التطبيقات (كما هي) */
+        @keyframes pulseFade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* شبكة التطبيقات */
         .dapps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 60px auto;
+            padding: 20px;
         }
 
         .dapp-card {
             background: rgba(10, 10, 10, 0.9);
-            border: 1px solid #222;
-            border-radius: 20px;
-            padding: 25px;
-            transition: all 0.4s ease;
+            border: 2px solid #1a1a1a;
+            border-radius: 25px;
+            padding: 30px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: right;
-            position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .dapp-card:hover {
             border-color: var(--ritual-green);
-            transform: translateY(-15px);
-            box-shadow: 0 15px 40px rgba(0, 255, 170, 0.2);
+            transform: translateY(-15px) rotateX(10deg); /* تأثير ميلان عند التحويم */
+            box-shadow: 0 20px 40px rgba(0, 255, 170, 0.2);
         }
 
         .dapp-image {
-            width: 100%; height: 170px;
-            border-radius: 12px;
+            width: 100%; height: 180px;
+            border-radius: 15px;
             object-fit: cover;
             background: #111;
+            border: 1px solid #333;
         }
 
-        .dapp-name { color: var(--ritual-green); font-size: 1.6rem; font-weight: bold; margin-top: 15px; display: block; }
-        .by-text { color: #888; font-size: 0.9rem; }
-        .description { color: #ccc; font-size: 0.95rem; margin: 20px 0; line-height: 1.6; }
+        .dapp-name { color: var(--ritual-green); font-size: 1.6rem; font-weight: bold; margin: 20px 0 5px; display: block; }
+        .by-text { color: #888; font-size: 0.9rem; margin-bottom: 15px; display: block; font-style: italic; }
+        .description { color: #bbb; font-size: 1rem; line-height: 1.6; margin-bottom: 25px; height: 80px; overflow: hidden; }
 
         .btn-visit {
             display: block;
             background: var(--ritual-green);
             color: #000;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 900;
             transition: 0.3s;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 255, 170, 0.3);
         }
 
-        .btn-visit:hover { background: #fff; transform: scale(1.05); }
+        .btn-visit:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
     <div class="ritual-altar">
+        <!-- توزيع الشموع المشتعلة -->
         <div class="candle" style="left: 5%; bottom: 40px;"><div class="flame"></div></div>
-        <div class="candle" style="right: 5%; bottom: 40px;"><div class="flame"></div></div>
-        <div class="candle" style="left: 15%; bottom: 120px; transform: scale(0.6); opacity: 0.4;"><div class="flame"></div></div>
-        <div class="candle" style="right: 15%; bottom: 120px; transform: scale(0.6); opacity: 0.4;"><div class="flame"></div></div>
+        <div class="candle" style="right: 5%; bottom: 60px;"><div class="flame"></div></div>
+        <div class="candle" style="left: 15%; bottom: 180px; transform: scale(0.6);"><div class="flame"></div></div>
+        <div class="candle" style="right: 15%; bottom: 220px; transform: scale(0.5);"><div class="flame"></div></div>
     </div>
 
-    <div class="content">
+    <div style="text-align: center;">
+        <!-- الشعار الضخم بـدوران 3D -->
         <div class="logo-container">
             <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
         </div>
-        
+
+        <!-- العنوان المزخرف -->
         <h1 class="ritual-title">Ritual Testnet Directory</h1>
 
         <div class="dapps-grid">
+            <!-- تطبيق 1 -->
             <div class="dapp-card">
                 <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
                 <span class="dapp-name">Tanjoro Node</span>
                 <span class="by-text">By: Ritual Community</span>
-                <p class="description">وصف المشروع وكيفية المساهمة فيه لدعم شبكة الذكاء الاصطناعي اللامركزية.</p>
-                <a href="#" class="btn-visit">Visit Project</a>
+                <p class="description">استمتع بتجربة أداء استثنائية مع أول عقدة ذكاء اصطناعي سيادية على بروتوكول ريتوال.</p>
+                <a href="#" class="btn-visit">ENTRANCE</a>
             </div>
 
+            <!-- تطبيق Anthor -->
             <div class="dapp-card">
-                <img src="" class="dapp-image">
-                <span class="dapp-name">Anthor Project</span>
-                <span class="by-text">By: Developer Name</span>
-                <p class="description">هذا تطبيق **anthor** مخصص لمجتمع ريتوال المتنامي.</p>
-                <a href="#" class="btn-visit">Visit Project</a>
+                <img src="https://via.placeholder.com/300x180/000/00ffaa?text=Anthor+Vision" class="dapp-image">
+                <span class="dapp-name">Anthor App</span>
+                <span class="by-text">By: Developer Alpha</span>
+                <p class="description">مشروع **anthor** متطور يهدف لتعزيز الشفافية في البيانات المجمعة.</p>
+                <a href="#" class="btn-visit">ENTRANCE</a>
             </div>
         </div>
     </div>
