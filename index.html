@@ -16,11 +16,10 @@
             color: white;
             font-family: 'Courier New', Courier, monospace;
             overflow-x: hidden;
-            /* تغيير اتجاه الصفحة بالكامل لليسار */
             direction: ltr; 
         }
 
-        /* الخلفية والشموع */
+        /* Background & Animated Candles */
         .ritual-altar {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -54,7 +53,7 @@
             100% { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: 1; }
         }
 
-        /* الشعار الضخم والمتحرك */
+        /* 3D Rotating Mega Logo */
         .logo-container {
             perspective: 1000px;
             margin-top: 50px;
@@ -74,7 +73,7 @@
             to { transform: rotateY(360deg); }
         }
 
-        /* العنوان المزخرف */
+        /* Ornamental Title */
         .title-wrapper { text-align: center; }
         .ritual-title {
             font-size: 3.5rem;
@@ -98,7 +97,7 @@
             50% { opacity: 0.3; }
         }
 
-        /* شبكة التطبيقات */
+        /* DApps Grid & Left-aligned Cards */
         .dapps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -114,7 +113,6 @@
             border-radius: 25px;
             padding: 30px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            /* المحاذاة لليسار */
             text-align: left; 
             backdrop-filter: blur(10px);
         }
@@ -137,6 +135,7 @@
         .by-text { color: #888; font-size: 0.9rem; margin-bottom: 15px; display: block; font-style: italic; }
         .description { color: #bbb; font-size: 1rem; line-height: 1.6; margin-bottom: 25px; height: 80px; overflow: hidden; }
 
+        /* Visit Button */
         .btn-visit {
             display: block;
             background: var(--ritual-green);
@@ -159,7 +158,6 @@
 <body>
 
     <div class="ritual-altar">
-        <!-- الشموع -->
         <div class="candle" style="left: 5%; bottom: 40px;"><div class="flame"></div></div>
         <div class="candle" style="right: 5%; bottom: 60px;"><div class="flame"></div></div>
         <div class="candle" style="left: 15%; bottom: 180px; transform: scale(0.6);"><div class="flame"></div></div>
@@ -167,31 +165,27 @@
     </div>
 
     <div class="title-wrapper">
-        <!-- الشعار -->
         <div class="logo-container">
             <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
         </div>
-        <!-- العنوان -->
-        <h1 class="ritual-title">Ritual community dApps</h1>
+        <h1 class="ritual-title">Ritual Testnet Directory</h1>
     </div>
 
     <div class="dapps-grid">
-        <!-- Card 1 -->
         <div class="dapp-card">
             <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
             <span class="dapp-name">Tanjoro Node</span>
             <span class="by-text">By: Ritual Community</span>
             <p class="description">Experience peak performance with the first sovereign AI node on the Ritual protocol.</p>
-            <a href="https://web-3-profile-mint--rolex9723060.replit.app" class="btn-visit">ENTRANCE</a>
+            <a href="https://x.com/ritualnet" target="_blank" rel="noopener noreferrer" class="btn-visit">ENTRANCE</a>
         </div>
 
-        <!-- Card 2 -->
         <div class="dapp-card">
-            <img src="https://kommodo.ai/i/QHgj395hLREcVRETpJsj" class="dapp-image">
-            <span class="dapp-name">Mint your identity</span>
-            <span class="by-text">By: Tanjiro</span>
-            <p class="description">Mint your identity on Ritual Chain.</p>
-            <a href="https://web-3-profile-mint--rolex9723060.replit.app" class="btn-visit">ENTRANCE</a>
+            <img src="https://i.postimg.cc/gkjLdjGt/Ritual-Mint.png" class="dapp-image">
+            <span class="dapp-name">Anthor App</span>
+            <span class="by-text">By: Developer Alpha</span>
+            <p class="description">An **anthor** advanced project aimed at enhancing transparency in aggregated data.</p>
+            <a href="https://web-3-profile-mint--rolex9723060.replit.app/" target="_blank" rel="noopener noreferrer" class="btn-visit">ENTRANCE</a>
         </div>
     </div>
 
