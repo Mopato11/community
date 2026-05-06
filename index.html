@@ -16,43 +16,51 @@
             height: 100%;
             background-color: #000;
             color: var(--text);
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* خلفية بديلة ومضمونة لطقوس غامضة */
+        /* خلفية طقوس غامضة مضمونة الظهور */
         .ritual-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: url('https://acegif.com/wp-content/uploads/2021/4af5/dark-forest-25.gif') no-repeat center center;
+            /* صورة طقوس احترافية من مصدر موثوق */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
-            filter: brightness(0.2) contrast(1.2);
+            background-position: center;
+            animation: slowZoom 20s infinite alternate; /* حركة بطيئة لتعويض الـ GIF */
         }
 
-        .scroll-container {
-            height: 100vh;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.5);
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .scroll-wrapper {
+            position: relative;
+            z-index: 1;
             padding: 40px 20px;
+            min-height: 100vh;
         }
 
         .main-logo {
             width: 150px;
             border-radius: 50%;
             border: 3px solid var(--accent);
-            box-shadow: 0 0 20px var(--accent);
-            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 0 25px var(--accent);
             display: block;
             margin: 0 auto 20px;
+            animation: pulse 3s infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px var(--accent); transform: scale(1); }
+            50% { box-shadow: 0 0 40px var(--accent); transform: scale(1.03); }
         }
 
-        h1 { font-size: 2.8rem; text-align: center; text-shadow: 0 0 15px var(--accent); margin-bottom: 50px; }
+        h1 { font-size: 3rem; text-align: center; text-shadow: 0 0 15px var(--accent); margin-bottom: 50px; }
 
         .dapps-grid {
             display: grid;
@@ -63,31 +71,32 @@
         }
 
         .dapp-card {
-            background: rgba(20, 20, 20, 0.9);
+            background: rgba(15, 15, 15, 0.85);
             border: 1px solid #333;
             border-radius: 20px;
             padding: 25px;
             backdrop-filter: blur(10px);
             text-align: right;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
-        .dapp-card:hover { border-color: var(--accent); transform: scale(1.02); }
+        .dapp-card:hover { border-color: var(--accent); transform: translateY(-10px); }
 
         .dapp-image {
-            width: 100%;
-            height: 160px;
+            width: 100%; height: 160px;
             border-radius: 12px;
             object-fit: cover;
             margin-bottom: 15px;
-            background: #1a1a1a;
+            background: #222;
         }
 
         .dapp-name { font-size: 1.5rem; color: var(--accent); font-weight: bold; display: block; }
         
-        .creator { font-size: 0.9rem; color: #00ffaa; margin-bottom: 10px; display: block; opacity: 0.7; }
+        /* خانة المطور */
+        .by-text { font-size: 0.85rem; color: #888; margin-bottom: 10px; display: block; }
         
-        .description { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; height: 80px; overflow: hidden; }
+        /* خانة الوصف */
+        .description { font-size: 0.9rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; height: 70px; overflow: hidden; }
 
         .btn-visit {
             display: block;
@@ -105,7 +114,7 @@
 
     <div class="ritual-bg"></div>
 
-    <div class="scroll-container">
+    <div class="scroll-wrapper">
         <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" alt="Ritual" class="main-logo">
         <h1>Ritual Testnet Directory</h1>
 
@@ -114,23 +123,21 @@
             <div class="dapp-card">
                 <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
                 <span class="dapp-name">Tanjoro Node</span>
-                <span class="creator">By: Ritual Community</span>
-                <p class="description">وصف التطبيق هنا: يساعدك في تشغيل العقد الخاصة بك ضمن شبكة Ritual بكل سهولة.</p>
-                <a href="https://x.com/ritualnet" class="btn-visit">Visit Here</a>
+                <span class="by-text">By: Ritual Community</span>
+                <p class="description">وصف كامل للتطبيق وما يقدمه لنظام ريتوال في مرحلة التيست نت.</p>
+                <a href="#" class="btn-visit">Visit Project</a>
             </div>
 
-            <!-- تطبيق رقم 2 (مثال لمشروع anthor) -->
+            <!-- تطبيق رقم 2 (Anthor App) -->
             <div class="dapp-card">
-                <img src="" class="dapp-image">
+                <img src="https://via.placeholder.com/300x160/111/00ffaa?text=Anthor+App" class="dapp-image">
                 <span class="dapp-name">Anthor App</span>
-                <span class="creator">By: Dev Name</span>
-                <p class="description">وصف لمشروع **anthor** مخصص لمجتمع ريتوال.</p>
-                <a href="#" class="btn-visit">Visit Here</a>
+                <span class="by-text">By: Developer Name</span>
+                <p class="description">وصف لمشروع **anthor** مخصص لمجتمع ريتوال[cite: 1].</p>
+                <a href="#" class="btn-visit">Visit Project</a>
             </div>
 
-            <!-- كرر هذه البطاقات حتى تصل لـ 10 تطبيقات[cite: 1] -->
-            <div class="dapp-card"><img src="" class="dapp-image"><span class="dapp-name">Soon</span><span class="creator">By: ---</span><p class="description">وصف قادم...</p><a href="#" class="btn-visit">Soon</a></div>
-            <div class="dapp-card"><img src="" class="dapp-image"><span class="dapp-name">Soon</span><span class="creator">By: ---</span><p class="description">وصف قادم...</p><a href="#" class="btn-visit">Soon</a></div>
+            <!-- يمكنك تكرار هذه البطاقة للوصول لـ 10 تطبيقات[cite: 1] -->
         </div>
     </div>
 
