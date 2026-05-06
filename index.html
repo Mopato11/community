@@ -20,28 +20,25 @@
             overflow-x: hidden;
         }
 
-        /* حاوية الخلفية المتحركة بالرابط الجديد */
-        .bg-container {
+        /* خلفية ثابتة تدعم الصورة المتحركة */
+        .background-ritual {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            /* استخدام رابط Giphy بصيغة المصدر المباشر لضمان الظهور */
+            background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDE2dHpiYWFycDRvY2x3dnEwMDg0a25xYjZscHozZnNka3pzeWgwNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7NkyOb0hraA6Y/giphy.gif') no-repeat center center;
+            background-size: cover;
+            filter: brightness(0.3) contrast(1.2);
         }
 
-        .bg-gif {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* لضمان ملء الشاشة */
-            filter: brightness(0.3); /* تعتيم الصورة لتسهيل القراءة */
-        }
-
-        .overlay {
+        .overlay-content {
             position: relative;
             z-index: 1;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.4); /* طبقة تعتيم إضافية */
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.4);
             min-height: 100vh;
         }
 
@@ -58,48 +55,52 @@
             50% { transform: translateY(-15px); }
         }
 
-        h1 { font-size: 3rem; text-align: center; text-shadow: 0 0 15px var(--accent); }
+        h1 { font-size: 3rem; text-align: center; text-shadow: 0 0 15px var(--accent); margin: 20px 0; }
 
         .dapps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 0 auto;
         }
 
         .dapp-card {
-            background: rgba(20, 20, 20, 0.85);
+            background: rgba(15, 15, 15, 0.9);
             border: 1px solid #333;
-            border-radius: 15px;
-            padding: 20px;
-            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(8px);
             text-align: right;
+            transition: 0.3s;
         }
+
+        .dapp-card:hover { border-color: var(--accent); transform: scale(1.02); }
 
         .dapp-image {
             width: 100%;
-            height: 150px;
-            border-radius: 10px;
+            height: 160px;
+            border-radius: 12px;
             object-fit: cover;
             margin-bottom: 15px;
+            border: 1px solid #444;
         }
 
-        .dapp-name { font-size: 1.4rem; color: var(--accent); font-weight: bold; }
+        .dapp-name { font-size: 1.5rem; color: var(--accent); font-weight: bold; display: block; }
         
-        /* خانة By */
-        .creator { font-size: 0.85rem; color: #888; display: block; margin-bottom: 10px; }
+        /* خانة المطور */
+        .creator { font-size: 0.9rem; color: #888; margin-bottom: 10px; display: block; }
         
         /* خانة الوصف */
-        .desc { font-size: 0.9rem; color: #ccc; line-height: 1.5; margin-bottom: 20px; }
+        .description { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
 
-        .btn {
+        .btn-visit {
             display: block;
             background: var(--accent);
             color: #000;
             text-align: center;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
         }
@@ -107,36 +108,34 @@
 </head>
 <body>
 
-    <div class="bg-container">
-        <!-- الرابط الذي أرسلته تم وضعه هنا كخلفية -->
-        <img src="https://media.giphy.com/media/7NkyOb0hraA6Y/giphy.gif" class="bg-gif" alt="Ritual Rituals">
-    </div>
+    <div class="background-ritual"></div>
 
-    <div class="overlay">
-        <div style="text-align: center;">
-            <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
+    <div class="overlay-content">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" alt="Ritual" class="main-logo">
             <h1>Ritual Testnet</h1>
         </div>
 
         <div class="dapps-grid">
+            <!-- التطبيق الأول -->
             <div class="dapp-card">
                 <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
                 <span class="dapp-name">Tanjoro Node</span>
                 <span class="creator">By: Ritual Community</span>
-                <p class="desc">هذا التطبيق يساعدك على إدارة عقدك في شبكة Ritual بسهولة.</p>
-                <a href="#" class="btn">Visit Here</a>
+                <p class="description">وصف كامل للتطبيق وكيف يخدم نظام ريتوال اللامركزي.</p>
+                <a href="#" class="btn-visit">Visit Here</a>
             </div>
 
-            <!-- خانة لتطبيق anthor -->
+            <!-- تطبيق آخر كمثال -->
             <div class="dapp-card">
-                <img src="" class="dapp-image" style="background:#1a1a1a">
+                <img src="" class="dapp-image" style="background: #111;">
                 <span class="dapp-name">Anthor dApp</span>
                 <span class="creator">By: Developer Name</span>
-                <p class="desc">وصف التطبيق الثاني وكيفية استخدامه.</p>
-                <a href="#" class="btn">Visit Here</a>
+                <p class="description">وصف لمشروع **anthor** يعمل ضمن التيست نت[cite: 1].</p>
+                <a href="#" class="btn-visit">Visit Here</a>
             </div>
             
-            <!-- يمكنك تكرار البطاقة حتى 10 مرات لـ evrey تطبيق جديد[cite: 1] -->
+            <!-- كرر الخانات لتصل لـ 10 تطبيقات[cite: 1] -->
         </div>
     </div>
 
