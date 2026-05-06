@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +14,10 @@
             margin: 0;
             background: #000;
             color: white;
-            font-family: 'Courier New', Courier, monospace; /* خط يعطي طابع الطقوس */
+            font-family: 'Courier New', Courier, monospace;
             overflow-x: hidden;
+            /* تغيير اتجاه الصفحة بالكامل لليسار */
+            direction: ltr; 
         }
 
         /* الخلفية والشموع */
@@ -54,16 +56,17 @@
 
         /* الشعار الضخم والمتحرك */
         .logo-container {
-            perspective: 1000px; /* لإعطاء تأثير ثلاثي الأبعاد */
+            perspective: 1000px;
             margin-top: 50px;
+            text-align: center;
         }
 
         .main-logo {
-            width: 220px; /* تكبير الشعار */
+            width: 220px;
             border-radius: 50%;
             border: 4px solid var(--ritual-green);
             filter: drop-shadow(0 0 30px var(--ritual-green));
-            animation: rotate3D 8s linear infinite; /* دوران ثلاثي الأبعاد */
+            animation: rotate3D 8s linear infinite;
         }
 
         @keyframes rotate3D {
@@ -71,7 +74,8 @@
             to { transform: rotateY(360deg); }
         }
 
-        /* زخرفة العنوان */
+        /* العنوان المزخرف */
+        .title-wrapper { text-align: center; }
         .ritual-title {
             font-size: 3.5rem;
             margin: 30px 0;
@@ -80,12 +84,11 @@
             letter-spacing: 5px;
             text-shadow: 0 0 10px var(--ritual-green), 0 0 20px var(--ritual-green);
             font-weight: 900;
-            position: relative;
             display: inline-block;
         }
 
         .ritual-title::before, .ritual-title::after {
-            content: " ✧ "; /* زخرفة جانبية */
+            content: " ✧ ";
             color: var(--ritual-green);
             animation: pulseFade 2s infinite;
         }
@@ -111,13 +114,14 @@
             border-radius: 25px;
             padding: 30px;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: right;
+            /* المحاذاة لليسار */
+            text-align: left; 
             backdrop-filter: blur(10px);
         }
 
         .dapp-card:hover {
             border-color: var(--ritual-green);
-            transform: translateY(-15px) rotateX(10deg); /* تأثير ميلان عند التحويم */
+            transform: translateY(-15px) rotateX(10deg);
             box-shadow: 0 20px 40px rgba(0, 255, 170, 0.2);
         }
 
@@ -155,40 +159,39 @@
 <body>
 
     <div class="ritual-altar">
-        <!-- توزيع الشموع المشتعلة -->
+        <!-- الشموع -->
         <div class="candle" style="left: 5%; bottom: 40px;"><div class="flame"></div></div>
         <div class="candle" style="right: 5%; bottom: 60px;"><div class="flame"></div></div>
         <div class="candle" style="left: 15%; bottom: 180px; transform: scale(0.6);"><div class="flame"></div></div>
         <div class="candle" style="right: 15%; bottom: 220px; transform: scale(0.5);"><div class="flame"></div></div>
     </div>
 
-    <div style="text-align: center;">
-        <!-- الشعار الضخم بـدوران 3D -->
+    <div class="title-wrapper">
+        <!-- الشعار -->
         <div class="logo-container">
             <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" class="main-logo">
         </div>
-
-        <!-- العنوان المزخرف -->
+        <!-- العنوان -->
         <h1 class="ritual-title">Ritual Testnet Directory</h1>
+    </div>
 
-        <div class="dapps-grid">
-            <!-- تطبيق 1 -->
-            <div class="dapp-card">
-                <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
-                <span class="dapp-name">Tanjoro Node</span>
-                <span class="by-text">By: Ritual Community</span>
-                <p class="description">استمتع بتجربة أداء استثنائية مع أول عقدة ذكاء اصطناعي سيادية على بروتوكول ريتوال.</p>
-                <a href="#" class="btn-visit">ENTRANCE</a>
-            </div>
+    <div class="dapps-grid">
+        <!-- Card 1 -->
+        <div class="dapp-card">
+            <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
+            <span class="dapp-name">Tanjoro Node</span>
+            <span class="by-text">By: Ritual Community</span>
+            <p class="description">Experience peak performance with the first sovereign AI node on the Ritual protocol.</p>
+            <a href="#" class="btn-visit">ENTRANCE</a>
+        </div>
 
-            <!-- تطبيق Anthor -->
-            <div class="dapp-card">
-                <img src="https://via.placeholder.com/300x180/000/00ffaa?text=Anthor+Vision" class="dapp-image">
-                <span class="dapp-name">Anthor App</span>
-                <span class="by-text">By: Developer Alpha</span>
-                <p class="description">مشروع **anthor** متطور يهدف لتعزيز الشفافية في البيانات المجمعة.</p>
-                <a href="#" class="btn-visit">ENTRANCE</a>
-            </div>
+        <!-- Card 2 -->
+        <div class="dapp-card">
+            <img src="https://via.placeholder.com/300x180/000/00ffaa?text=Anthor+Vision" class="dapp-image">
+            <span class="dapp-name">Anthor App</span>
+            <span class="by-text">By: Developer Alpha</span>
+            <p class="description">An **anthor** advanced project aimed at enhancing transparency in aggregated data.</p>
+            <a href="#" class="btn-visit">ENTRANCE</a>
         </div>
     </div>
 
