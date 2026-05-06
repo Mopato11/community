@@ -17,29 +17,24 @@
             background-color: #000;
             color: var(--text);
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* خلفية ثابتة تدعم الصورة المتحركة */
-        .background-ritual {
+        /* خلفية بديلة ومضمونة لطقوس غامضة */
+        .ritual-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            /* استخدام رابط Giphy بصيغة المصدر المباشر لضمان الظهور */
-            background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDE2dHpiYWFycDRvY2x3dnEwMDg0a25xYjZscHozZnNka3pzeWgwNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7NkyOb0hraA6Y/giphy.gif') no-repeat center center;
+            background: url('https://acegif.com/wp-content/uploads/2021/4af5/dark-forest-25.gif') no-repeat center center;
             background-size: cover;
-            filter: brightness(0.3) contrast(1.2);
+            filter: brightness(0.2) contrast(1.2);
         }
 
-        .overlay-content {
-            position: relative;
-            z-index: 1;
-            padding: 50px 20px;
-            background: rgba(0, 0, 0, 0.4);
-            min-height: 100vh;
+        .scroll-container {
+            height: 100vh;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px 20px;
         }
 
         .main-logo {
@@ -48,6 +43,8 @@
             border: 3px solid var(--accent);
             box-shadow: 0 0 20px var(--accent);
             animation: float 3s ease-in-out infinite;
+            display: block;
+            margin: 0 auto 20px;
         }
 
         @keyframes float {
@@ -55,7 +52,7 @@
             50% { transform: translateY(-15px); }
         }
 
-        h1 { font-size: 3rem; text-align: center; text-shadow: 0 0 15px var(--accent); margin: 20px 0; }
+        h1 { font-size: 2.8rem; text-align: center; text-shadow: 0 0 15px var(--accent); margin-bottom: 50px; }
 
         .dapps-grid {
             display: grid;
@@ -66,11 +63,11 @@
         }
 
         .dapp-card {
-            background: rgba(15, 15, 15, 0.9);
+            background: rgba(20, 20, 20, 0.9);
             border: 1px solid #333;
             border-radius: 20px;
             padding: 25px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             text-align: right;
             transition: 0.3s;
         }
@@ -83,16 +80,14 @@
             border-radius: 12px;
             object-fit: cover;
             margin-bottom: 15px;
-            border: 1px solid #444;
+            background: #1a1a1a;
         }
 
         .dapp-name { font-size: 1.5rem; color: var(--accent); font-weight: bold; display: block; }
         
-        /* خانة المطور */
-        .creator { font-size: 0.9rem; color: #888; margin-bottom: 10px; display: block; }
+        .creator { font-size: 0.9rem; color: #00ffaa; margin-bottom: 10px; display: block; opacity: 0.7; }
         
-        /* خانة الوصف */
-        .description { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; }
+        .description { font-size: 0.95rem; color: #ccc; line-height: 1.6; margin-bottom: 20px; height: 80px; overflow: hidden; }
 
         .btn-visit {
             display: block;
@@ -108,34 +103,34 @@
 </head>
 <body>
 
-    <div class="background-ritual"></div>
+    <div class="ritual-bg"></div>
 
-    <div class="overlay-content">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" alt="Ritual" class="main-logo">
-            <h1>Ritual Testnet</h1>
-        </div>
+    <div class="scroll-container">
+        <img src="https://pbs.twimg.com/profile_images/2047761933764268032/ltdZOulq_400x400.jpg" alt="Ritual" class="main-logo">
+        <h1>Ritual Testnet Directory</h1>
 
         <div class="dapps-grid">
-            <!-- التطبيق الأول -->
+            <!-- التطبيق 1 -->
             <div class="dapp-card">
                 <img src="https://pbs.twimg.com/media/HGsZQ_gXUAA8uwp?format=jpg&name=4096x4096" class="dapp-image">
                 <span class="dapp-name">Tanjoro Node</span>
                 <span class="creator">By: Ritual Community</span>
-                <p class="description">وصف كامل للتطبيق وكيف يخدم نظام ريتوال اللامركزي.</p>
+                <p class="description">وصف التطبيق هنا: يساعدك في تشغيل العقد الخاصة بك ضمن شبكة Ritual بكل سهولة.</p>
+                <a href="https://x.com/ritualnet" class="btn-visit">Visit Here</a>
+            </div>
+
+            <!-- تطبيق رقم 2 (مثال لمشروع anthor) -->
+            <div class="dapp-card">
+                <img src="" class="dapp-image">
+                <span class="dapp-name">Anthor App</span>
+                <span class="creator">By: Dev Name</span>
+                <p class="description">وصف لمشروع **anthor** مخصص لمجتمع ريتوال.</p>
                 <a href="#" class="btn-visit">Visit Here</a>
             </div>
 
-            <!-- تطبيق آخر كمثال -->
-            <div class="dapp-card">
-                <img src="" class="dapp-image" style="background: #111;">
-                <span class="dapp-name">Anthor dApp</span>
-                <span class="creator">By: Developer Name</span>
-                <p class="description">وصف لمشروع **anthor** يعمل ضمن التيست نت[cite: 1].</p>
-                <a href="#" class="btn-visit">Visit Here</a>
-            </div>
-            
-            <!-- كرر الخانات لتصل لـ 10 تطبيقات[cite: 1] -->
+            <!-- كرر هذه البطاقات حتى تصل لـ 10 تطبيقات[cite: 1] -->
+            <div class="dapp-card"><img src="" class="dapp-image"><span class="dapp-name">Soon</span><span class="creator">By: ---</span><p class="description">وصف قادم...</p><a href="#" class="btn-visit">Soon</a></div>
+            <div class="dapp-card"><img src="" class="dapp-image"><span class="dapp-name">Soon</span><span class="creator">By: ---</span><p class="description">وصف قادم...</p><a href="#" class="btn-visit">Soon</a></div>
         </div>
     </div>
 
